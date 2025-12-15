@@ -1,0 +1,7 @@
+[wrap-git]
+url = git@github.com:ibm-openbmc/bmcweb.git
+revision = head
+depth = 1
+
+[provide]
+bmcweb = bmcweb_dep
