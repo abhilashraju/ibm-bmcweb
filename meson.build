@@ -50,7 +50,7 @@ bmcweb_incdir = bmcweb_proj.get_variable('incdir')
 
 # Get bmcweblib from the subproject - this already contains webserver_run.cpp
 bmcweblib = bmcweb_proj.get_variable('bmcweblib')
-
+libexec = get_option('prefix') + '/' + get_option('libexecdir')
 # Build the executable
 # Note: We create a simple main that calls the run() function from bmcweblib
 # The webserver_run.cpp in src/ is for reference/customization
@@ -66,4 +66,14 @@ executable(
     dependencies: bmcweb_dep,
     link_with: bmcweblib,
     install: true,
+    install_dir: '/usr/bin'
+)
+configure_file(
+    input: 'service/ibm-bmweb.service.in',
+    output: 'ibm-bmcweb.service',
+    configuration: {
+        'SYSTEMD_TARGET': 'multi-user.target'
+    },
+    install: true,
+    install_dir: dependency('systemd').get_variable('systemdsystemunitdir'),
 )
