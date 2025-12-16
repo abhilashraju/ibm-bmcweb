@@ -4,6 +4,12 @@
 
 #include "bmcweb_config.h"
 
+#include <exception>
+
+// Workaround for Boost.Coroutine compatibility with C++17+
+// Boost coroutine headers use unqualified current_exception() in templates
+using std::current_exception;
+
 #include "app.hpp"
 #include "dbus_monitor.hpp"
 #include "dbus_singleton.hpp"

@@ -1,5 +1,5 @@
 [wrap-git]
-url = git@github.com:ibm-openbmc/bmcweb.git
+url = https://github.com/ibm-openbmc/bmcweb.git
 revision = head
 depth = 1
 
