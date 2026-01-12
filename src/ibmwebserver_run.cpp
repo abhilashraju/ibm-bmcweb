@@ -10,12 +10,12 @@
 // Boost coroutine headers use unqualified current_exception() in templates
 using std::current_exception;
 
-#include "app.hpp"
 #include "dbus_monitor.hpp"
 #include "dbus_singleton.hpp"
 #include "event_service_manager.hpp"
 #include "google_service_root.hpp"
 #include "hostname_monitor.hpp"
+#include "ibm_app.hpp"
 #include "ibm_locks.hpp"
 #include "ibm_management_console_rest.hpp"
 #include "image_upload.hpp"
@@ -58,7 +58,7 @@ static void setLogLevel(const std::string &logLevel) {
 
 int ibm_run() {
   boost::asio::io_context &io = getIoContext();
-  App app;
+  IBMApp app;
 
   std::shared_ptr<sdbusplus::asio::connection> systemBus =
       std::make_shared<sdbusplus::asio::connection>(io);
